@@ -502,6 +502,7 @@ NEJ.define([
                 '"':'&quot;',"'":'&#39;','\n':'<br/>','\r':''
             };
         return function(_content){
+            _content += '';
             _content = _p._$encode(_map,_content);
             return _content.replace(_reg,'<br/><br/>');
         };
