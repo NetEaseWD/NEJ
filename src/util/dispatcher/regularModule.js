@@ -29,7 +29,15 @@ NEJ.define([
      */
     _pro.__build = function(){
         this._$innerModule = new this._$$InnerModule().$inject(this.__body);
-        this.__export.parent = this._$innerModule.$refs.view;
+
+        this._$innerModule.__export = {};
+        if (this._$innerModule.__doBuild) {
+            this._$innerModule.__doBuild();
+            this._$innerModule.$update();
+        }
+        this.__export = _u._$merge({
+            parent: this._$innerModule.$refs.view
+        }, this._$innerModule.__export);
 
         this._$innerModule.__doSendMessage = this.__doSendMessage._$bind(this);
     }
